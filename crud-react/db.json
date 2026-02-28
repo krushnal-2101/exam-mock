@@ -1,0 +1,25 @@
+{
+  "todos": [
+   {
+    "id": 1,
+    "name": "krushnal",
+    "email": "kk1@gmail.com",
+    "phone": "525549448949"
+  },
+  {
+    "id": 1,
+    "name": "jay",
+    "email": "jay1@gmail.com",
+    "phone": "464989746847"
+  },
+  {
+    "id": 1,
+    "name": "amit",
+    "email": "amit1@gmail.com",
+    "phone": "789825656955"
+  }
+  ]
+}
+
+
+
