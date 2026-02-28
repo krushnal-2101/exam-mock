@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+<header>
+    <h1>User Management System</h1>
+</header>
+
+<main>
+<h2>User List</h2>
+
+<form method="GET" class="search-bar">
+    <input type="text" name="search" value="<%= search %>" placeholder="Search by name, email or phone...">
+    <select name="limit">
+        <option value="5" <%= limit==5?'selected':'' %>>Show 5</option>
+        <option value="10" <%= limit==10?'selected':'' %>>Show 10</option>
+        <option value="15" <%= limit==15?'selected':'' %>>Show 15</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<a href="/add" class="btn-add-user">+ Add New User</a>
+
+<form method="POST" action="/multiple-delete">
+<table>
+<thead>
+<tr>
+    <th><input type="checkbox" id="selectAll" /></th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Image</th>
+    <th>Status</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th>Action</th>
+</tr>
+</thead>
+<tbody>
+
+<% users.forEach(user => { %>
+<tr>
+<td><input type="checkbox" name="ids" value="<%= user._id %>" class="row-checkbox"></td>
+<td><%= user.name %></td>
+<td><%= user.email %></td>
+<td><%= user.phone %></td>
+<td><img src="<%= user.image %>" width="50" alt="<%= user.name %>"></td>
+<td><span class="<%= user.status ? 'status-active' : 'status-inactive' %>"><%= user.status ? 'Active' : 'Inactive' %></span></td>
+<td><%= user.created_date %></td>
+<td><%= user.updated_date %></td>
+<td>
+    <div class="table-actions">
+        <a href="/edit/<%= user._id %>" class="btn-edit">Edit</a>
+        <form method="POST" action="/delete/<%= user._id %>?_method=DELETE" style="margin: 0;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this record?');">Delete</button>
+        </form>
+    </div>
+</td>
+</tr>
+<% }) %>
+
+</tbody>
+</table>
+
+<button type="submit" class="btn btn-danger mt-20" onclick="return confirm('Delete selected records?');">🗑 Delete Selected</button>
+</form>
+
+<div class="pagination">
+<% for(let i=1;i<=totalPages;i++){ %>
+    <a href="/?page=<%= i %>&search=<%= search %>&limit=<%= limit %>" <%= i === currentPage ? 'style="background-color:#667eea; color:white;"' : '' %>><%= i %></a>
+<% } %>
+</div>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 User Management System. All rights reserved.</p>
+</footer>
+</div>
+
+<script>
+// Select/Deselect all checkboxes
+document.getElementById('selectAll').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
+    });
+});
+</script>
+
+</body>
+</html>
