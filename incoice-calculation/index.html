@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invoice Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Invoice Calculator</h1>
+
+    <div id="input-section">
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price/unit</th>
+                    <th>Discount %</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="items-body"></tbody>
+        </table>
+        <button id="add-item">Add Item</button>
+    </div>
+
+    <div id="summary-section">
+        <p>Subtotal: <span id="subtotal">0.00</span></p>
+        <p>Total Discount: <span id="total-discount">0.00</span></p>
+        <p>
+            Tax rate (%): <input type="number" id="tax-rate" value="0" min="0" max="100" />
+        </p>
+        <p>Tax amount: <span id="tax-amount">0.00</span></p>
+        <p>Grand total: <span id="grand-total">0.00</span></p>
+        <button id="reset">Reset</button>
+        <button id="print">Print/Export PDF</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
